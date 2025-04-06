@@ -1,0 +1,61 @@
+.dialogue-container {
+    display: flex;
+    flex-direction: column; /* Still column direction for overall layout */
+    height: 500px;
+    border: 1px solid #ccc;
+  }
+  
+  .dialogue-sides-wrapper { /* NEW CSS FOR THE WRAPPER */
+    display: flex; /* Use flex for the sides to be side-by-side */
+    width: 100%; /* Make the wrapper take full width of the container */
+  }
+  
+  .dialogue-side {
+    flex: 1; /* Each side takes equal width within the wrapper */
+    flex-grow: 1; /* Allow dialogue sides to grow vertically */
+    padding: 15px;
+    border-bottom: 1px solid #ccc; /* Separator between dialogue sides */
+    overflow-y: auto;
+  }
+  
+  .left-side {
+    border-right: 1px solid black; /* Remove border-right from the left side */
+  }
+
+  .right-side {
+    border-bottom: none; /* No border-bottom on the rightmost side */
+  }
+  
+  .dialogue-messages {
+    margin-bottom: 15px;
+  }
+  
+  .dialogue-input {
+    padding: 15px;
+    border-top: 1px solid #ccc;
+    display: flex; /* Use flexbox for centering input elements */
+    flex-direction: column; /* Stack textarea and button vertically within input area */
+    align-items: center; /* Center items horizontally within the input area */
+  }
+  
+  textarea {
+    width: 80%; /* Reduce textarea width, adjust as needed */
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+
+  .message {
+    margin-bottom: 8px; /* Space between messages */
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #f0f0f0; /* Light gray background */
+    border: 1px solid #ddd; /* Light border */
+    word-wrap: break-word; /* Prevent long messages from breaking layout */
+  }
