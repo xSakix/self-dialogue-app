@@ -137,3 +137,24 @@ dist
 
 # angular
 .angular/
+/dist/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sublime-project
+*.sublime-workspace
+
+# Operating System Generated Files
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Documentation Output
+/documentation/
