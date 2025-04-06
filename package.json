@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:prod": "ng build --configuration production --base-href=/self-dialogue/",
+    "build:prod": "ng build --configuration production",
     "deploy:gh": "npm run build:prod && npx angular-cli-ghpages --dir=dist/self-dialogue-app/browser/"
   },
   "private": true,
