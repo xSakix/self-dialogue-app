@@ -1,26 +1,10 @@
 <div class="dialogue-container">
-    <div class="dialogue-sides-wrapper">
-      <div class="dialogue-side left-side">
-        <h3>Argument Side (Left)</h3>
-        <div class="dialogue-messages left-messages">
-          <!-- Messages from the left side will go here -->
-           <div *ngFor="let message of leftMessages; let i = index" class="message">
-            {{i+1}}. {{message}}
-           </div>
+    <div class="dialogue-message-container">
+        <div *ngFor="let message of allMessages; let i = index" class="message">
+        {{i+1}}. {{message}}
         </div>
-      </div>
-  
-      <div class="dialogue-side right-side">
-        <h3>Counter-Argument Side (Right)</h3>
-        <div class="dialogue-messages right-messages">
-          <!-- Messages from the right side will go here -->
-          <div *ngFor="let message of rightMessages; let i = index" class="message">
-            {{i+1}}. {{message}}
-           </div>
-        </div>
-      </div>
     </div>
-  
+    
     <div class="dialogue-input">
       <textarea placeholder="Type your message here..." [(ngModel)]="currentMessage"></textarea>
       <button (click)="sendMessage()">Send</button>

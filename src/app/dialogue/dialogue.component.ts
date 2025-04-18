@@ -11,19 +11,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class DialogueComponent {
   currentMessage = '';
-  leftMessages: string[] = [];
-  rightMessages: string[] = [];
-  currentSide: 'left' | 'right' = 'left';
+  allMessages: string[] = [];
 
   sendMessage(){
     if(this.currentMessage.trim() === '') return;
-    if(this.currentSide === 'left') {
-      this.leftMessages.push(this.currentMessage);
-      this.currentSide = 'right';
-    } else {
-      this.rightMessages.push(this.currentMessage);
-      this.currentSide = 'left';
-    }
+    this.allMessages.push(this.currentMessage);
     this.currentMessage = '';
   }
 }
