@@ -1,28 +1,16 @@
-<div class="dialogue-container">
-    <div class="dialogue-sides-wrapper">
-      <div class="dialogue-side left-side">
-        <h3>Argument Side (Left)</h3>
-        <div class="dialogue-messages left-messages">
-          <!-- Messages from the left side will go here -->
-           <div *ngFor="let message of leftMessages; let i = index" class="message">
-            {{i+1}}. {{message}}
-           </div>
-        </div>
+<!-- dialogue.component.html -->
+<div class="dialogue-wrapper"> <!-- Add this wrapper -->
+  <div class="dialogue-container">
+    <div class="dialog-messages-container" #messagesContainer>
+      <!-- Messages using *ngFor -->
+      <div *ngFor="let message of messages" class="message" [ngClass]="message.actor">
+        {{ message.text }}
       </div>
-  
-      <div class="dialogue-side right-side">
-        <h3>Counter-Argument Side (Right)</h3>
-        <div class="dialogue-messages right-messages">
-          <!-- Messages from the right side will go here -->
-          <div *ngFor="let message of rightMessages; let i = index" class="message">
-            {{i+1}}. {{message}}
-           </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="dialogue-input">
-      <textarea placeholder="Type your message here..." [(ngModel)]="currentMessage"></textarea>
-      <button (click)="sendMessage()">Send</button>
     </div>
   </div>
+
+  <div class="dialogue-input">
+    <textarea [(ngModel)]="newMessage" placeholder="Type your message..." (keydown.enter)="sendMessage(); $event.preventDefault()"></textarea>
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div> <!-- Close the wrapper -->
