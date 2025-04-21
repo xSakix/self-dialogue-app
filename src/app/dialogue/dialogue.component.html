@@ -1,19 +1,16 @@
-<div class="dialogue-container">
-    <div class="dialogue-messages-container" #messagesContainer>
-        <div *ngFor="let message of allMessages"             
-            class="message"
-            [ngClass]="{'left-actor':message.actor==='left', 'right-actor':message.actor==='right'}">
-        {{message.text}}
-        </div>
-    </div>
-    
-    <div class="dialogue-input">
-      <textarea 
-        placeholder="Type your message here..." 
-        [(ngModel)]="newMessage"
-        (keydown.enter)="sendMessage();$event.preventDefault()"
-        (keyup.enter)="$event.preventDefault()"
-        ></textarea>
-      <button (click)="sendMessage()">Send</button>
+<!-- dialogue.component.html -->
+<div class="dialogue-wrapper"> <!-- Add this wrapper -->
+  <div class="dialogue-container">
+    <div class="dialog-messages-container" #messagesContainer>
+      <!-- Messages using *ngFor -->
+      <div *ngFor="let message of messages" class="message" [ngClass]="message.actor">
+        {{ message.text }}
+      </div>
     </div>
   </div>
+
+  <div class="dialogue-input">
+    <textarea [(ngModel)]="newMessage" placeholder="Type your message..." (keydown.enter)="sendMessage(); $event.preventDefault()"></textarea>
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div> <!-- Close the wrapper -->
