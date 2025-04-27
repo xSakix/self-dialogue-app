@@ -10,7 +10,13 @@
   </div>
 
   <div class="dialogue-input">
-    <textarea [(ngModel)]="newMessage" placeholder="Type your message..." (keydown.enter)="sendMessage(); $event.preventDefault()"></textarea>
+    <textarea 
+      #dialogueTextarea 
+      [(ngModel)]="newMessage"
+      (focus) = "onTextareaFocus()"
+      placeholder="Type your message..." 
+      (keydown.enter)="sendMessage(); 
+      $event.preventDefault()"></textarea>
     <button (click)="sendMessage()">Send</button>
   </div>
 </div> <!-- Close the wrapper -->

@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, ViewChild, ElementRef, AfterViewChecked, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, ViewChild, ElementRef, AfterViewChecked, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, Inject, PLATFORM_ID, AfterViewInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface Message{
@@ -15,16 +15,18 @@ interface Message{
   styleUrl: './dialogue.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DialogueComponent implements OnInit,AfterViewChecked {
+export class DialogueComponent implements OnInit,AfterViewChecked, AfterViewInit {
   
   @ViewChild('messagesContainer') private messageContainerRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('dialogueTextarea') private dialogueTextareaRef!: ElementRef<HTMLTextAreaElement>;
 
   messages: Message[] = [];
   newMessage: string = '';
   private shouldScrollToBottom: boolean = false;
   private currentActor: 'left-actor' | 'right-actor'= 'left-actor';
+  private isMobile = false;
 
-  constructor(private cdr: ChangeDetectorRef){}
+  constructor(private cdr: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: Object){}
 
   ngOnInit(): void {}
 
@@ -35,6 +37,22 @@ export class DialogueComponent implements OnInit,AfterViewChecked {
     }
   }
 
+  ngAfterViewInit(): void {
+    if(isPlatformBrowser(this.platformId)){
+      this.checkIfMobile();
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    if(isPlatformBrowser(this.platformId)){
+      this.checkIfMobile();
+    }
+  }
+
+  private checkIfMobile(): void{
+    this.isMobile = window.innerWidth < 768;
+  }
 
   private triggerScrollToBottom(){
     this.shouldScrollToBottom = true;
@@ -74,4 +92,12 @@ export class DialogueComponent implements OnInit,AfterViewChecked {
     this.triggerScrollToBottom();
   }
   
+  onTextareaFocus(): void {
+    if(this.isMobile && this.dialogueTextareaRef){
+      setTimeout(() => {
+        this.dialogueTextareaRef.nativeElement.scrollIntoView({behavior: 'smooth', block:'center'});
+      }, 300);
+    }
+  }
+
 }
