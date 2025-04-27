@@ -130,13 +130,24 @@
     border-radius: 0;
     border: none;
     box-shadow: none;
-    height: 100vh; /* Ensure it takes full screen height */
+    height: 100dvh; /* Ensure it takes full screen height */
+    overflow: hidden;
   }
   /* Keep input absolute on mobile too, relative to the wrapper */
   .dialogue-input {
      position: absolute; /* Keep absolute */
-     /* No need for fixed positioning if wrapper is full height */
+     bottom: 0;
+     left: 0;
+     right: 0;
+     width: 100%;
+     box-sizing: border-box;
+     border-radius: 0; /* Remove radius for full width */
+     z-index: 10;
+     min-height: 70px;
+     background-color: #f9f9f9; /* Ensure background is visible */
+     border-top: 1px solid #eee;
   }
+  
    .dialog-messages-container {
      padding-bottom: 90px; /* Ensure padding matches input height */
    }
